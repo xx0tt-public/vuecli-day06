@@ -1,28 +1,71 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h2>Hello World</h2>
+    <MyList :list="list">
+      <template #Myid="scope">{{ scope.row.id }}</template>
+      <template #Myname="scope">{{ scope.row.name }}</template>
+      <template #Myage="scope">{{ scope.row.age }}</template>
+      <template #MyheadImgUrl="scope">
+        <a v-if="scope.row.type === 0" :href="scope.row.headImgUrl">{{
+          scope.row.headImgUrl
+        }}</a>
+        <img
+          v-else-if="scope.row.type === 1"
+          :src="scope.row.headImgUrl"
+          width="100px"
+        />
+        <p v-else>{{ scope.row.headImgUrl }}</p>
+      </template>
+    </MyList>
+    <hr />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MyList from './components/MyList.vue'
 export default {
-  name: 'App',
+  data() {
+    return {
+      list: [
+        {
+          id: 100,
+          name: '小传同学',
+          age: 18,
+          headImgUrl:
+            'http://yun.itheima.com/Upload/./Images/20210303/603f2d2153241.jpg',
+          type: 0, // 0 显示成a标签
+        },
+        {
+          id: 101,
+          name: '小黑同学',
+          age: 25,
+          headImgUrl:
+            'http://yun.itheima.com/Upload/./Images/20210304/6040b101a18ef.jpg',
+          type: 1, // 1 显示成图片
+        },
+        {
+          id: 102,
+          name: '智慧同学',
+          age: 21,
+          headImgUrl:
+            'http://yun.itheima.com/Upload/./Images/20210302/603e0142e535f.jpg',
+          type: 1, // 1 显示成图片
+        },
+        {
+          id: 103,
+          name: '智慧同学',
+          age: 21,
+          headImgUrl:
+            'http://yun.itheima.com/Upload/./Images/20210302/603e0142e535f.jpg',
+          type: 2, // 2 显示成文本
+        },
+      ],
+    }
+  },
   components: {
-    HelloWorld
-  }
+    MyList,
+  },
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
