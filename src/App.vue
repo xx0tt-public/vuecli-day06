@@ -1,38 +1,36 @@
 <template>
   <div>
-    <span class="mobile" @click="comName = 'mobile'">手机注册</span>
-    <span class="email" @click="comName = 'email'">邮箱注册</span>
-    <div>
-      <!-- 点击切换，数据还保存 -->
-      <keep-alive>
-        <component :is="comName"> </component>
-        <mobile>
-          <template v-slot:mobiles="scope">
-            {{ scope.row }}
-          </template>
-        </mobile>
-        <email>
-          <template v-slot:emails="scope">
-            {{ scope.row }}
-          </template>
-        </email>
-      </keep-alive>
-    </div>
+    <MyTable>
+      <template v-slot:idcast="scope">
+        {{ scope.row.id }}
+      </template>
+      <template v-slot:title="scope">
+        {{ scope.row.name }}
+      </template>
+      <template v-slot:age="scope">
+        {{ scope.row.age }}
+      </template>
+      <template v-slot:img="scope">
+        <img
+          v-if="scope.row.type === 1"
+          :src="scope.row.headImgUrl"
+          alt=""
+          width="100px"
+        />
+        <a v-else-if="scope.row.type === 0" :href="scope.row.headImgUrl">{{
+          scope.row.headImgUrl
+        }}</a>
+        <p v-else>{{ scope.row.headImgUrl }}</p>
+      </template>
+    </MyTable>
   </div>
 </template>
 
 <script>
-import mobile from './components/mobile.vue';
-import email from './components/email.vue';
+import MyTable from './components/MyTable.vue';
 export default {
   components: {
-    mobile,
-    email,
-  },
-  data() {
-    return {
-      comName: 'mobile',
-    };
+    MyTable,
   },
 };
 </script>

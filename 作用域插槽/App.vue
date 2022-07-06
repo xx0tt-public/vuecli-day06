@@ -11,9 +11,16 @@
         {{ scope.row.age }}
       </template>
       <template v-slot:img="scope">
-        <img :src="scope.row.headImgUrl" alt="" />
-        <a :href="scope.row.headImgUrl">a标签点击</a>
-        {{ scope.row.headImgUrl }}
+        <img
+          v-if="scope.row.type === 1"
+          :src="scope.row.headImgUrl"
+          alt=""
+          width="100px"
+        />
+        <a v-else-if="scope.row.type === 0" :href="scope.row.headImgUrl">{{
+          scope.row.headImgUrl
+        }}</a>
+        <p v-else>{{ scope.row.headImgUrl }}</p>
       </template>
     </MyTable>
   </div>
