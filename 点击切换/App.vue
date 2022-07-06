@@ -5,10 +5,11 @@
     <div>
       <!-- 点击切换，数据还保存 -->
       <keep-alive>
-        <component :is="comName"> </component>
+        <component :is="comName"></component>
         <mobile>
           <template v-slot:mobiles="scope">
-            {{ scope.row }}
+            <input type="text" placeholder="输入手机号码" :value="scope.row" />
+            <!-- {{ scope.row }} -->
           </template>
         </mobile>
         <email>
@@ -31,7 +32,7 @@ export default {
   },
   data() {
     return {
-      comName: 'mobile',
+      comName: 'email',
     };
   },
 };
