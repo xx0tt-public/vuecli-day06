@@ -1,5 +1,7 @@
 <template>
-  <div class="my-header" :style="{ backgroundColor: color }">{{ title }}</div>
+  <div class="my-header" :style="{ backgroundColor: background, color }">
+    {{ title }}
+  </div>
 </template>
 
 <script>
@@ -9,9 +11,7 @@ export default {
       type: String,
       required: true,
     },
-    backgroundColor: {
-      type: String,
-    },
+    background: String,
     color: {
       type: String,
       default: '#fff',

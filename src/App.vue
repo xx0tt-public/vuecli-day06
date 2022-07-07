@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MyHeader title="归属地" backgroundColor="orange" color="purple" />
+    <MyHeader title="归属地" background="orange" color="purple" />
     <div class="box">
       <MyGoods v-for="item in list" :key="item.id" :obj="item" />
     </div>
